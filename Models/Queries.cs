@@ -8,11 +8,39 @@ namespace Job_test_task_Announcements_Api.Models
 {
     public static class Queries
     {
-        public static async Task<List<Announcement>> Get_Data(SqlConnection connection)
+        public static async Task<List<Announcement>> Get_Data(string sort_argument, bool reverse, SqlConnection connection)
         {
+            string query = new("");
+            if (sort_argument == "price")
+            {
+                if (reverse)
+                {
+                    query = "Select * FROM Announcement ORDER BY price DESC";
+                }
+                else
+                {
+                    query = "Select * FROM Announcement ORDER BY price  ASC";
 
+                }
+            }
+            else if (sort_argument =="date") 
+            {
+                if (reverse)
+                {
+                    query = "Select * FROM Announcement ORDER BY date DESC";
+                }
+                else
+                {
+                    query = "Select * FROM Announcement ORDER BY date  ASC";
+
+                }
+            }
+            else
+            {
+                query = "Select * FROM Announcement";
+            }
             List<Announcement> Data = new List<Announcement>();
-            SqlCommand command = new SqlCommand("Select * FROM Announcement", connection);
+            SqlCommand command = new SqlCommand(query, connection);
             SqlDataReader reader = await  command.ExecuteReaderAsync();
             //if (!reader.HasRows){ DbCreating.Insert_Defolts(connection);}
             //reader.Close();
@@ -26,11 +54,11 @@ namespace Job_test_task_Announcements_Api.Models
                         Id =reader.GetValue(0).ToString(),
                         Title = Convert.ToString(reader.GetValue(1)),
                         Description = reader.GetValue(2).ToString(),
-                        Price = Convert.ToString(reader.GetValue(3)),
+                        Price = int.Parse(reader.GetValue(3).ToString()),
                         MainFotoLink = Convert.ToString(reader.GetValue(4)),
                         AddFoto1 = Convert.ToString(reader.GetValue(5)),
                         AddFoto2 = Convert.ToString(reader.GetValue(6)),
-                        Date = reader.GetValue(7).ToString()
+                        Date =reader.GetValue(7).ToString()
                         
                     };
                     Data.Add(announcement);
@@ -80,7 +108,7 @@ namespace Job_test_task_Announcements_Api.Models
                         Id = reader.GetValue(0).ToString(),
                         Title = Convert.ToString(reader.GetValue(1)),
                         Description = reader.GetValue(2).ToString(),
-                        Price = Convert.ToString(reader.GetValue(3)),
+                        Price = Convert.ToInt32(reader.GetValue(3)),
                         MainFotoLink = Convert.ToString(reader.GetValue(4)),
                         AddFoto1 = Convert.ToString(reader.GetValue(5)),
                         AddFoto2 = Convert.ToString(reader.GetValue(6)),
@@ -133,6 +161,9 @@ namespace Job_test_task_Announcements_Api.Models
 
             return true;
         }
+
+
+
 
 
     }

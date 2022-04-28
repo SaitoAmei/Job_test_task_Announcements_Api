@@ -23,11 +23,11 @@ namespace Job_test_task_Announcements_Api.Models
                 " CREATE TABLE Announcement (id int IDENTITY(1,1) PRIMARY KEY," +
                 " title nvarchar(200) NOT NULL, " +
                 "description nvarchar(1000)," +
-                "price nvarchar(50) NOT NULL," +
+                "price INT NOT NULL," +
                 "mfotolink nvarchar(100) NOT NULL," +
                 "addfotolink1 nvarchar(100), " +
                 "addfotolink2 nvarchar(100), " +
-                "date nvarchar(50)) END;", DbCreation.Connection());
+                "date DATE) END;", DbCreation.Connection());
             await command.ExecuteNonQueryAsync();
         }
 

@@ -12,7 +12,7 @@ namespace Job_test_task_Announcements_Api.Controllers
     {
         [HttpPost]
         public async Task<IActionResult> Delete(string title, string description,
-                                                string price, string mainfoto, 
+                                                int price, string mainfoto, 
                                                 string addfoto1, string addfoto2)
         {
            await Queries.Create(new Announcement(title, description, price, mainfoto, addfoto1, addfoto2, DateTime.Now.ToString()));
