@@ -15,7 +15,8 @@ namespace Job_test_task_Announcements_Api.Controllers
     {
         [HttpPost]
         public async  Task<IActionResult> Delete(string id, string title)
-        {   int.Parse(id);
+        {   
+            int.Parse(id);
             await Queries.Deleting(id, title);
 
             return Ok();
