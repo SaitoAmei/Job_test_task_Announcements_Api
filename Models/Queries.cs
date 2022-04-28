@@ -30,6 +30,7 @@ namespace Job_test_task_Announcements_Api.Models
                         MainFotoLink = Convert.ToString(reader.GetValue(4)),
                         AddFoto1 = Convert.ToString(reader.GetValue(5)),
                         AddFoto2 = Convert.ToString(reader.GetValue(6)),
+                        Date = reader.GetValue(7).ToString()
                         
                     };
                     Data.Add(announcement);
@@ -83,6 +84,7 @@ namespace Job_test_task_Announcements_Api.Models
                         MainFotoLink = Convert.ToString(reader.GetValue(4)),
                         AddFoto1 = Convert.ToString(reader.GetValue(5)),
                         AddFoto2 = Convert.ToString(reader.GetValue(6)),
+                        Date = reader.GetValue(7).ToString()
 
                     };
                     return announcement;
@@ -109,8 +111,25 @@ namespace Job_test_task_Announcements_Api.Models
             return true;
         } 
 
-        public static async Task<bool> Create()
+        public static async Task<bool> Create( Announcement value)
         {
+            SqlCommand command  = new("INSERT INTO Announcement " +
+                "(title,  description, price, mfotolink, addfotolink1, addfotolink2, date)" +
+                " VALUES " +
+                "(@title, @description, @price, @mfotolink, @addfotolink1, @addfotolink2, @date)", 
+                DbCreation.Connection());
+
+            command.Parameters.AddWithValue("title", value.Title);
+            command.Parameters.AddWithValue("description", value.Description);
+            command.Parameters.AddWithValue("price", value.Price);
+            command.Parameters.AddWithValue("mfotolink", value.MainFotoLink);
+            command.Parameters.AddWithValue("addfotolink1", value.AddFoto1);
+            command.Parameters.AddWithValue("addfotolink2", value.AddFoto2);
+            command.Parameters.AddWithValue("date", value.Date);
+
+            await command.ExecuteNonQueryAsync();
+
+
 
             return true;
         }

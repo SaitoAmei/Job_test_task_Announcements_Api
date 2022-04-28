@@ -18,13 +18,15 @@ namespace Job_test_task_Announcements_Api.Models
         public string Date { get; set; }
 
 
-        public Announcement(string title, string price, string main_foto_link, string add_foto1, string add_foto2, string date )
+        public Announcement(string title,  string description, string price, string main_foto_link, string add_foto1, string add_foto2, string date )
         {
             this.Title = title;
+            this.Description = description;
             this.Price = price;
             this.MainFotoLink = main_foto_link;
             this.AddFoto1 = add_foto1;
             this.AddFoto2 = add_foto2;
+            this.Date = date;
         }
 
         public Announcement()

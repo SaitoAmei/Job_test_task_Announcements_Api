@@ -25,7 +25,7 @@ namespace Job_test_task_Announcements_Api.Models
                 "description nvarchar(1000)," +
                 "price nvarchar(50) NOT NULL," +
                 "mfotolink nvarchar(100) NOT NULL," +
-                "addfotolink1 nvarchar(100, " +
+                "addfotolink1 nvarchar(100), " +
                 "addfotolink2 nvarchar(100), " +
                 "date nvarchar(50)) END;", DbCreation.Connection());
             await command.ExecuteNonQueryAsync();
