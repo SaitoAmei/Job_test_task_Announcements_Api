@@ -15,10 +15,10 @@ namespace Job_test_task_Announcements_Api.Models
 
         public string AddFoto1 { get; set; }
         public string AddFoto2 { get; set; }
-        public String Date { get; set; }
+        public DateTime Date { get; set; }
 
 
-        public Announcement(string title,  string description, int price, string main_foto_link, string add_foto1, string add_foto2, string date )
+        public Announcement(string title,  string description, int price, string main_foto_link, string add_foto1, string add_foto2, DateTime date )
         {
             this.Title = title;
             this.Description = description;
