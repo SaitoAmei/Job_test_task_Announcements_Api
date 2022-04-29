@@ -39,15 +39,23 @@ namespace Job_test_task_Announcements_Api.Controllers
 
                 int element = 1;
                 foreach (var i in data)
-                {   
-                    int min = int.Parse($"{page -1}{page -1}");
-                    int max = int.Parse($"{page}{page - 1}");
-                    if (element >= min && element <= max)
+                {
+                    if (page != 0)
+                    {
+                        int min = int.Parse($"{page - 1}{page - 1}");
+                        int max = int.Parse($"{page}{page - 1}");
+                        if (element >= min && element <= max)
+                        {
+                            dat.Append(JsonSerializer.Serialize(new { i.Title, i.MainFotoLink, i.Price }));
+                            element++;
+                        }
+                        else { element++; continue; }
+
+                    }
+                    else 
                     {
                         dat.Append(JsonSerializer.Serialize(new { i.Title, i.MainFotoLink, i.Price }));
-                        element++;
                     }
-                    else { element++; continue; }
                    
                     
                     /*dat.Append(JsonSerializer.Serialize(i));*/
