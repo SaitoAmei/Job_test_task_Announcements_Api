@@ -10,7 +10,7 @@ namespace Job_test_task_Announcements_Api.Controllers
     [ApiController]
     public class DeleteController : ControllerBase
     {
-        [HttpPost]
+        [HttpDelete]
         public async Task<IActionResult> Delete(string id, string title)
         {
             try {

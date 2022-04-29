@@ -108,7 +108,7 @@ namespace Job_test_task_Announcements_Api.Models
             }
             catch (Exception) { return new Announcement(); }
 
-            return new Announcement() { Title = "Не знайдено!!!" };
+            return new Announcement() { Title = "Dont find !!" };
 
 
 

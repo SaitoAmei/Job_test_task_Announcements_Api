@@ -11,7 +11,7 @@ namespace Job_test_task_Announcements_Api.Controllers
     [ApiController]
     public class GetByIdController : ControllerBase
     {
-        [HttpPost]
+        [HttpGet]
         public IActionResult GetOne(string id, bool fields)
         {
             if (id == null ||  id == "") 
