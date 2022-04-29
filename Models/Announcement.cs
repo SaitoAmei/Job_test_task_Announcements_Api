@@ -13,8 +13,8 @@ namespace Job_test_task_Announcements_Api.Models
 
         public string MainFotoLink { get; set; }
 
-        public string AddFoto1 { get; set; }
-        public string AddFoto2 { get; set; }
+        public string AddPhoto1 { get; set; }
+        public string AddPhoto2 { get; set; }
         public DateTime Date { get; set; }
 
 
@@ -24,8 +24,8 @@ namespace Job_test_task_Announcements_Api.Models
             this.Description = description;
             this.Price = price;
             this.MainFotoLink = main_foto_link;
-            this.AddFoto1 = add_foto1;
-            this.AddFoto2 = add_foto2;
+            this.AddPhoto1 = add_foto1;
+            this.AddPhoto2 = add_foto2;
             this.Date = date;
         }
 
