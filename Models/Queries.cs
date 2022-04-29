@@ -56,8 +56,8 @@ namespace Job_test_task_Announcements_Api.Models
                         Description = reader.GetValue(2).ToString(),
                         Price = int.Parse(reader.GetValue(3).ToString()),
                         MainFotoLink = Convert.ToString(reader.GetValue(4)),
-                        AddFoto1 = Convert.ToString(reader.GetValue(5)),
-                        AddFoto2 = Convert.ToString(reader.GetValue(6)),
+                        AddPhoto1 = Convert.ToString(reader.GetValue(5)),
+                        AddPhoto2 = Convert.ToString(reader.GetValue(6)),
                         Date =Convert.ToDateTime(reader.GetValue(7)) 
                         
                     };
@@ -97,8 +97,8 @@ namespace Job_test_task_Announcements_Api.Models
                         Description = reader.GetValue(2).ToString(),
                         Price = Convert.ToInt32(reader.GetValue(3)),
                         MainFotoLink = Convert.ToString(reader.GetValue(4)),
-                        AddFoto1 = Convert.ToString(reader.GetValue(5)),
-                        AddFoto2 = Convert.ToString(reader.GetValue(6)),
+                        AddPhoto1 = Convert.ToString(reader.GetValue(5)),
+                        AddPhoto2 = Convert.ToString(reader.GetValue(6)),
                         Date = Convert.ToDateTime(reader.GetValue(7))
                     };
                     return announcement;
@@ -137,8 +137,8 @@ namespace Job_test_task_Announcements_Api.Models
             command.Parameters.AddWithValue("description", value.Description);
             command.Parameters.AddWithValue("price", value.Price);
             command.Parameters.AddWithValue("mfotolink", value.MainFotoLink);
-            command.Parameters.AddWithValue("addfotolink1", value.AddFoto1);
-            command.Parameters.AddWithValue("addfotolink2", value.AddFoto2);
+            command.Parameters.AddWithValue("addfotolink1", value.AddPhoto1);
+            command.Parameters.AddWithValue("addfotolink2", value.AddPhoto2);
             command.Parameters.AddWithValue("date", value.Date);
 
             await command.ExecuteNonQueryAsync();
