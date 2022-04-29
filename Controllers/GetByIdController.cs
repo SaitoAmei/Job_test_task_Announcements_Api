@@ -14,12 +14,25 @@ namespace Job_test_task_Announcements_Api.Controllers
     public class GetByIdController : ControllerBase
     {
         [HttpPost]
-        public IActionResult GetOne(string id)
+        public IActionResult GetOne(string id, bool fields)
         {
-            
-            var data = Queries.GetElementById(id).Result;
-            JsonSerializer.Serialize(data);
+            Announcement data = new();
+            if (fields)
+            {
+                data = Queries.GetElementById(id).Result;
+                JsonSerializer.Serialize(data);
+            }
+            else 
+            {
+                data = Queries.GetElementById(id).Result;
+                Dictionary<string, object> dict = new() {};
+                dict.Add("Title", data.Title);
+                dict.Add("Price", data.Price);
+                dict.Add("Data", data.Date);
+                return Ok(JsonSerializer.Serialize(dict));
+            }
             return Ok(data);
+
 
 
         }
