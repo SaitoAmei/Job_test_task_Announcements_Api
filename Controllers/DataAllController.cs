@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.IO;
+﻿
 using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
 using Job_test_task_Announcements_Api.Models;
 using System.Threading.Tasks;
-using System.Net;
 using System.Collections.Generic;
 using System;
 
@@ -47,7 +44,7 @@ namespace Job_test_task_Announcements_Api.Controllers
                         int max = int.Parse($"{page}{page - 1}");
                         if (element >= min && element <= max)
                         {
-                            dat.Append(JsonSerializer.Serialize(new { i.Title, i.MainFotoLink, i.Price }));
+                            dat.Append(JsonSerializer.Serialize(new { i.Title, i.MainPhotoLink, i.Price }));
                             element++;
                         }
                         else { element++; continue; }
@@ -55,7 +52,7 @@ namespace Job_test_task_Announcements_Api.Controllers
                     }
                     else 
                     {
-                        dat.Append(JsonSerializer.Serialize(new { i.Title, i.MainFotoLink, i.Price }));
+                        dat.Append(JsonSerializer.Serialize(new { i.Title, i.MainPhotoLink, i.Price }));
                     }
                    
                     

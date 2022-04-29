@@ -55,7 +55,7 @@ namespace Job_test_task_Announcements_Api.Models
                         Title = Convert.ToString(reader.GetValue(1)),
                         Description = reader.GetValue(2).ToString(),
                         Price = int.Parse(reader.GetValue(3).ToString()),
-                        MainFotoLink = Convert.ToString(reader.GetValue(4)),
+                        MainPhotoLink = Convert.ToString(reader.GetValue(4)),
                         AddPhoto1 = Convert.ToString(reader.GetValue(5)),
                         AddPhoto2 = Convert.ToString(reader.GetValue(6)),
                         Date =Convert.ToDateTime(reader.GetValue(7)) 
@@ -96,7 +96,7 @@ namespace Job_test_task_Announcements_Api.Models
                         Title = Convert.ToString(reader.GetValue(1)),
                         Description = reader.GetValue(2).ToString(),
                         Price = Convert.ToInt32(reader.GetValue(3)),
-                        MainFotoLink = Convert.ToString(reader.GetValue(4)),
+                        MainPhotoLink = Convert.ToString(reader.GetValue(4)),
                         AddPhoto1 = Convert.ToString(reader.GetValue(5)),
                         AddPhoto2 = Convert.ToString(reader.GetValue(6)),
                         Date = Convert.ToDateTime(reader.GetValue(7))
@@ -136,7 +136,7 @@ namespace Job_test_task_Announcements_Api.Models
             command.Parameters.AddWithValue("title", value.Title);
             command.Parameters.AddWithValue("description", value.Description);
             command.Parameters.AddWithValue("price", value.Price);
-            command.Parameters.AddWithValue("mfotolink", value.MainFotoLink);
+            command.Parameters.AddWithValue("mfotolink", value.MainPhotoLink);
             command.Parameters.AddWithValue("addfotolink1", value.AddPhoto1);
             command.Parameters.AddWithValue("addfotolink2", value.AddPhoto2);
             command.Parameters.AddWithValue("date", value.Date);
