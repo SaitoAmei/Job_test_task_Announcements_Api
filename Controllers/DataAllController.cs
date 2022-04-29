@@ -17,8 +17,9 @@ namespace Job_test_task_Announcements_Api.Controllers
     public class DataAllController : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetAllData(string order_by, bool decreasing)
-        {
+        public async Task<IActionResult> GetAllData(string order_by, bool decreasing, int page)
+        {   
+
             try
             {
                 List<Announcement> data = new();
@@ -36,21 +37,22 @@ namespace Job_test_task_Announcements_Api.Controllers
                 }
                 else { data = Queries.Get_Data("", decreasing, DbCreation.Connection()).Result; }
 
-                Page page = new() { Pag = 1, Elements = 10 };
+                int element = 1;
                 foreach (var i in data)
-                {
-                    if (page.Elements == 10)
+                {   
+                    int min = int.Parse($"{page -1}{page -1}");
+                    int max = int.Parse($"{page}{page - 1}");
+                    if (element >= min && element <= max)
                     {
-                        dat.Append(JsonSerializer.Serialize(page));
-                        page.Pag++;
-                        page.Elements = 0;
+                        dat.Append(JsonSerializer.Serialize(new { i.Title, i.MainFotoLink, i.Price }));
+                        element++;
                     }
-
-                    dat.Append(JsonSerializer.Serialize(new { i.Title, i.MainFotoLink, i.Price }));
+                    else { element++; continue; }
+                   
+                    
                     /*dat.Append(JsonSerializer.Serialize(i));*/
-                    page.Elements++;
-
                 }
+
                 return Ok(dat.ToString()) ;
             }
             catch (Exception ) { return Conflict(); }
