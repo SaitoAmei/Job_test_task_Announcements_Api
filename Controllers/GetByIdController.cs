@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
-using System.Text;
 using System.Collections.Generic;
-
-using System.Threading.Tasks;
 using Job_test_task_Announcements_Api.Models;
 using System;
 
