@@ -15,7 +15,11 @@ namespace Job_test_task_Announcements_Api.Controllers
     {
         [HttpPost]
         public async  Task<IActionResult> Delete(string id, string title)
-        {   
+        {
+            if (id == null || id == "")
+            {
+                return BadRequest(new RequestCustom() { Id = null, Status = BadRequest().StatusCode.ToString(), Description = "Id field can not be empty !!!" });
+            }
             int.Parse(id);
             await Queries.Deleting(id, title);
 

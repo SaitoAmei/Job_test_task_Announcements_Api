@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 using System.Threading.Tasks;
 using Job_test_task_Announcements_Api.Models;
+using System;
 
 namespace Job_test_task_Announcements_Api.Controllers
 {
@@ -16,22 +17,38 @@ namespace Job_test_task_Announcements_Api.Controllers
         [HttpPost]
         public IActionResult GetOne(string id, bool fields)
         {
+            if (id == null ||  id == "") 
+            { 
+                return BadRequest(new RequestCustom() 
+                { 
+                    Id = null, Status = BadRequest().StatusCode.ToString(), Description = "Id field can not be empty !!!"
+                });
+            }
+
             Announcement data = new();
-            if (fields)
+            try
             {
-                data = Queries.GetElementById(id).Result;
-                JsonSerializer.Serialize(data);
+                if (fields)
+                {
+                    data = Queries.GetElementById(id).Result;
+                    JsonSerializer.Serialize(data);
+                    return Ok(JsonSerializer.Serialize(data));
+                }
+                else
+                {
+                    data = Queries.GetElementById(id).Result;
+                    Dictionary<string, object> dict = new() {};
+                    dict.Add("Title", data.Title);
+                    dict.Add("Price", data.Price);
+                    dict.Add("Data", data.Date);
+                    return Ok(JsonSerializer.Serialize(dict));
+                }
             }
-            else 
-            {
-                data = Queries.GetElementById(id).Result;
-                Dictionary<string, object> dict = new() {};
-                dict.Add("Title", data.Title);
-                dict.Add("Price", data.Price);
-                dict.Add("Data", data.Date);
-                return Ok(JsonSerializer.Serialize(dict));
+            catch (Exception exception) 
+            { 
+                return BadRequest(new RequestCustom() { Id = id, Status = BadRequest().StatusCode.ToString(), Description = exception.ToString() }); 
             }
-            return Ok(data);
+
 
 
 
