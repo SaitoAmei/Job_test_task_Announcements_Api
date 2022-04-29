@@ -37,6 +37,7 @@ namespace Job_test_task_Announcements_Api.Controllers
                 }
                 else { data = Queries.Get_Data("", decreasing, DbCreation.Connection()).Result; }
 
+ 
                 int element = 1;
                 foreach (var i in data)
                 {
@@ -61,6 +62,10 @@ namespace Job_test_task_Announcements_Api.Controllers
                     /*dat.Append(JsonSerializer.Serialize(i));*/
                 }
 
+                if (dat.Length == 0)
+                {
+                    return Ok(new RequestCustom() { Status = Ok().StatusCode.ToString(), Description = "Page is empty !" });
+                }
                 return Ok(dat.ToString()) ;
             }
             catch (Exception ) { return Conflict(); }
