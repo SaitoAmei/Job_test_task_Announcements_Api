@@ -37,7 +37,7 @@ namespace Job_test_task_Announcements_Api.Controllers
                     Dictionary<string, object> dict = new() {};
                     dict.Add("Title", data.Title);
                     dict.Add("Price", data.Price);
-                    dict.Add("Data", data.Date);
+                    dict.Add("Main Photo Link", data.MainPhotoLink);
                     return Ok(JsonSerializer.Serialize(dict));
                 }
             }
