@@ -99,6 +99,7 @@ namespace Job_test_task_Announcements_Api.Models
             command.Parameters.AddWithValue("id", int.Parse(id));
         
             SqlDataReader reader = await command.ExecuteReaderAsync();
+            
             try
             {
                 while (reader.Read())
@@ -161,7 +162,31 @@ namespace Job_test_task_Announcements_Api.Models
             return true;
         }
 
+        public static async Task<int> GetElementCount()
+        {
+            try
+            {
+                int counter = 0;
+                SqlCommand command = new("SELECT * FROM Announcement ", DbCreation.Connection());
+                SqlDataReader reader = await command.ExecuteReaderAsync();
 
+            try
+            {
+                while (reader.Read())
+                {
+                    counter++;
+                }
+            }
+            finally 
+            {
+                if (!reader.IsClosed) { reader.Close(); }
+                
+            }
+
+            return counter;
+            }
+            catch (SqlException) { return 0; }
+        }
 
 
 
