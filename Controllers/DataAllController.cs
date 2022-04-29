@@ -17,7 +17,7 @@ namespace Job_test_task_Announcements_Api.Controllers
     public class DataAllController : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetAllData(string order_by, bool reverse)
+        public async Task<IActionResult> GetAllData(string order_by, bool decreasing)
         {
             try
             {
@@ -27,14 +27,14 @@ namespace Job_test_task_Announcements_Api.Controllers
                 if (order_by == "price")
                 {
 
-                    data = Queries.Get_Data("price", reverse, DbCreation.Connection()).Result;
+                    data = Queries.Get_Data("price", decreasing, DbCreation.Connection()).Result;
 
                 }
                 else if (order_by == "date")
                 {
-                    data = Queries.Get_Data("date", reverse, DbCreation.Connection()).Result;
+                    data = Queries.Get_Data("date", decreasing, DbCreation.Connection()).Result;
                 }
-                else { data = Queries.Get_Data("", reverse, DbCreation.Connection()).Result; }
+                else { data = Queries.Get_Data("", decreasing, DbCreation.Connection()).Result; }
 
                 Page page = new() { Pag = 1, Elements = 10 };
                 foreach (var i in data)
